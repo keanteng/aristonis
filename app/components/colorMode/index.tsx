@@ -6,9 +6,6 @@ import {
     SunIcon,
     MoonIcon,
 } from '@heroicons/react/24/outline';
-import {
-    IconButton,
-} from '@radix-ui/themes';
 
 const ColorMode = () => {
     const [mounted, setMounted] = useState(false);
@@ -33,11 +30,9 @@ const ColorMode = () => {
     }
 
     return (
-        <div>
-            <IconButton onClick={handleClick}>
-                {darkMode ? <MoonIcon className='h-5 w-5'/> : <SunIcon className='h-5 w-5' />}
-            </IconButton>
-        </div>
+        <button onClick={handleClick}>
+                {darkMode ? <MoonIcon className='h-6 w-6'/> : <SunIcon className='h-6 w-6' />}
+        </button>
     )
 }
 

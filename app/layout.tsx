@@ -19,9 +19,6 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Aristonis",
   description: "Simplify Your Sales Process",
-  icons: {
-    icon: "/favicon.ico",
-  }
 };
 
 export default function RootLayout({
