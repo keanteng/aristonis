@@ -36,7 +36,7 @@ export default function Home() {
           </Text>
 
           <Link
-          href='/dashboard'
+          href='/home'
           className='mt-4 bg-white hover:bg-teal-800 hover:text-white self-center text-black py-2 px-6 rounded-lg flex flex-row items-center gap-2 shadow-md'
           >
             <span>Try on Aristonis</span> <ArrowTopRightOnSquareIcon className='h-5 w-5' />
