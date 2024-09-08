@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <main className='p-4 min-h-screen flex flex-col'>
-      <div className='flex flex-row items-center h-20 px-4 rounded-lg bg-neutral-600 justify-center gap-2'>
+      <div className='flex flex-row items-center h-20 px-6 rounded-lg bg-neutral-600'>
         <Text className='text-4xl text-white'>
           Aristonis
         </Text>

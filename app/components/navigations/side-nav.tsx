@@ -18,7 +18,7 @@ const menuItems = [
   {
     icons: <ShoppingBagIcon className='h-5 w-5' />,
     label: 'Products',
-    href: '/products'
+    href: '/home/products'
   },
 ];
 
