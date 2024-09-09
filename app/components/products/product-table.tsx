@@ -5,6 +5,7 @@ import ProductCard from "./product-card";
 import { tempProductDef } from "@/app/library/definitions/temp-products-def";
 import ProductSearch from "./product-search";
 import ProductPagination from "./product-pagination";
+import { useRouter } from 'next/navigation';
 
 interface ProductTableProps {
     data: tempProductDef[];
@@ -24,12 +25,19 @@ export default function ProductTable({ data, currentFilterParams }: ProductTable
         setCurrentPage(1);
     }
 
+    const router = useRouter();
+    const handlePageChange = (id: string) => {
+        router.push(`/home/products/edit/${id}`);
+    }
+    
     return (
-        <main className="flex flex-col px-2 md:px-4 lg:px-12 xl:px-80 border border-solid py-2 rounded-lg max-w-full gap-2">
+        <main className="flex flex-col px-2 md:px-4 lg:px-12 xl:px-80 py-2 rounded-lg max-w-full gap-2">
             <ProductSearch currentFilterParams={currentFilterParams}/>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {currentData.map((product) => (
-                    <ProductCard key={product.id} {...product} />
+                    <div key={product.id} onClick={() => handlePageChange(product.id.toString())}>
+                        <ProductCard {...product} />
+                    </div>
                 ))}
             </div>
             <div className="flex md:flex-row flex-col gap-4 items-center justify-center py-3">
