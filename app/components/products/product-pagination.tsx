@@ -18,14 +18,14 @@ interface PaginationProps {
     };
   
     return (
-      <div className="flex flex-row gap-4 items-center text-sm">
-        <button onClick={handlePrevious} disabled={currentPage === 1} className="flex bg-neutral-300 rounded-md p-1 px-2 hover:bg-neutral-200 shadow-md text-black">
-          Prev
+      <div className="flex flex-row gap-4 items-center text-base">
+        <button onClick={handlePrevious} disabled={currentPage === 1} className="flex bg-neutral-300 rounded-md p-1 px-2 hover:bg-neutral-400 shadow-md text-black">
+          Previous
         </button>
         <div>
           Page {currentPage} of {totalPages}
         </div>
-        <button onClick={handleNext} disabled={currentPage === totalPages} className="flex bg-neutral-300 rounded-md p-1 px-2 hover:bg-neutral-200 shadow-md text-black">
+        <button onClick={handleNext} disabled={currentPage === totalPages} className="flex bg-neutral-300 rounded-md p-1 px-2 hover:bg-neutral-400 shadow-md text-black">
           Next
         </button>
       </div>

@@ -32,7 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class">
-          <Theme accentColor="teal">
+          <Theme accentColor="gray">
             {children}
           </Theme>
         </ThemeProvider>
