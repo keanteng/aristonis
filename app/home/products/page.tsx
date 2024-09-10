@@ -2,7 +2,7 @@ import { tempProducts } from "@/app/library/data/temp-products";
 import ProductTable from "@/app/components/products/product-table";
 import Link from "next/link";
 import {
-   PlusIcon
+   PlusCircleIcon
 } from '@heroicons/react/24/outline';
 
 interface ProductsProps {
@@ -19,14 +19,14 @@ export default function Products({searchParams}: ProductsProps) {
     return (
         <main>
             <div className="flex flex-row px-3 rounded-lg py-2 lg:mx-12 xl:mx-80 items-center">
-                <div className="flex flex-row items-center gap-2">
+                <div className="flex flex-row items-center gap-1">
                     <h1 className="text-3xl font-semibold">Products</h1>
                 </div>
                 <Link 
-                    href="/products/new"
+                    href="/home/products/create"
                     className="flex flex-row items-center gap-2 ml-auto bg-neutral-300 p-2 px-3 rounded-lg text-black hover:bg-neutral-400 shadow-sm"
                 >
-                    <span>Create</span> <PlusIcon className="h-5 w-5" />
+                    <span>Create</span> <PlusCircleIcon className="h-5 w-5" />
                 </Link>
             </div>
             <ProductTable data={products} currentFilterParams={currentFilterParams}/>

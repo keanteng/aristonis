@@ -1,6 +1,7 @@
 import { 
   HomeIcon,
   ShoppingBagIcon,
+  ArchiveBoxIcon,
 } from '@heroicons/react/24/outline';
 import {
   GitHubLogoIcon,
@@ -19,6 +20,11 @@ const menuItems = [
     icons: <ShoppingBagIcon className='h-5 w-5' />,
     label: 'Products',
     href: '/home/products'
+  },
+  {
+    icons: <ArchiveBoxIcon className='h-5 w-5' />,
+    label: 'Orders',
+    href: '/home/orders'
   },
 ];
 
@@ -45,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
               style={{ height: '2.5rem' }}
             >
               <div className="flex items-center justify-center">{item.icons}</div>
-              <p className={`${!isOpen && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
+              <p className={`${!isOpen && 'w-0'} overflow-hidden`}>{item.label}</p>
               <p className={`${isOpen && 'hidden'} absolute left-32 shadow-md rounded-md w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16`}>{item.label}</p>
             </Link>
           ))}
