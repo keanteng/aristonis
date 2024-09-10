@@ -6,14 +6,16 @@ interface ProductFormProps {
 
 export default function ProductForm({product}: ProductFormProps) {
   return (
-    <form>
+    <form className="text-black">
       <div className="flex flex-col gap-1">
-        <p className="text-red-500 text-sm font-semibold">Product</p>
-        <div className="flex flex-row">
-            <label>Name:</label>
-            <input type="text" name="name" value={product?.name} />
+        <div className="flex flex-row gap-1 items-center">
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" name="name" value={product?.name}  className="border-2 p-1 rounded-lg bg-white"/>
         </div>
-
+        <div className="flex flex-row gap-1 items-center">
+          <label htmlFor="name">Brand:</label>
+          <input type="text" id="name" name="name" value={product?.brand}  className="border-2 p-1 rounded-lg bg-white"/>
+        </div>
       </div>
     </form>
   );

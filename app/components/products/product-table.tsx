@@ -5,7 +5,7 @@ import ProductCard from "./product-card";
 import { tempProductDef } from "@/app/library/definitions/temp-products-def";
 import ProductSearch from "./product-search";
 import ProductPagination from "./product-pagination";
-import { useRouter } from 'next/navigation';
+import ProductDrawer from "./product-drawer";
 
 interface ProductTableProps {
     data: tempProductDef[];
@@ -15,6 +15,8 @@ interface ProductTableProps {
 export default function ProductTable({ data, currentFilterParams }: ProductTableProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [selectedProduct, setSelectedProduct] = useState<tempProductDef | null>(null);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -25,9 +27,14 @@ export default function ProductTable({ data, currentFilterParams }: ProductTable
         setCurrentPage(1);
     }
 
-    const router = useRouter();
-    const handlePageChange = (id: string) => {
-        router.push(`/home/products/edit/${id}`);
+    const handleProductSelect = (product: tempProductDef) => {
+        console.log(product.name);
+        setSelectedProduct(product);
+        setIsDrawerOpen(true);
+    }
+
+    const handleDrawerClose = () => {
+        setIsDrawerOpen(false);
     }
     
     return (
@@ -35,8 +42,8 @@ export default function ProductTable({ data, currentFilterParams }: ProductTable
             <ProductSearch currentFilterParams={currentFilterParams}/>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {currentData.map((product) => (
-                    <div key={product.id} onClick={() => handlePageChange(product.id.toString())}>
-                        <ProductCard {...product} />
+                    <div key={product.id} onClick={() => handleProductSelect(product)}>
+                        <ProductCard {...product}/>
                     </div>
                 ))}
             </div>
@@ -49,6 +56,7 @@ export default function ProductTable({ data, currentFilterParams }: ProductTable
                     <option value={100}>100 Items</option>
                 </select>
             </div>
+            {selectedProduct && <ProductDrawer product={selectedProduct} isOpen={isDrawerOpen} onClose={handleDrawerClose} />}
         </main>
     )
 }
