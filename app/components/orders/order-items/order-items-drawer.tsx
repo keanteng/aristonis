@@ -1,18 +1,18 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { tempProductDef } from "@/app/library/definitions/temp-products-def";
+import { tempOrderItemsDef } from '@/app/library/definitions/temp-order-items-def';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import ProductForm from "./product-form";
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { OrderItemsForm } from './order-items-form';
 
 interface ProductDrawerProps {
-    product: tempProductDef;
+    orderItem: tempOrderItemsDef;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export default function ProductDrawer({ product, isOpen, onClose }: ProductDrawerProps) {
+export default function OrderItemsDrawer({ orderItem, isOpen, onClose }: ProductDrawerProps) {
     const drawerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -48,11 +48,11 @@ export default function ProductDrawer({ product, isOpen, onClose }: ProductDrawe
                     </button>
                     <div className="flex flex-row gap-1 items-center">
                         <PencilSquareIcon className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">Edit Product</h2>
+                        <h2 className="text-lg font-semibold">Edit Order</h2>
                     </div>
                 </div>
                 <div className="flex flex-col gap-0.5 w-full px-4 py-3 overflow-y-auto h-[calc(100vh-3rem)]">
-                    <ProductForm product={product} />
+                    <OrderItemsForm orderItem={orderItem} />
                 </div>
             </div>
         </>

@@ -1,6 +1,14 @@
 import OrderTable from "@/app/components/orders/order-table"
 
-export default function Orders() {
+interface OrdersProps {
+    searchParams: {
+        filter?: string;
+    }
+}
+
+export default function Orders({searchParams}: OrdersProps) {
+    let currentFilterParams = searchParams.filter ?? 'all';
+    console.log(currentFilterParams);
     return (
         <main>
             <div className="flex flex-col px-3 rounded-lg py-2 lg:mx-12 xl:mx-80">
@@ -10,7 +18,7 @@ export default function Orders() {
                 </div>
             </div>
             <div className="flex flex-col py-5">
-                    <OrderTable />
+                    <OrderTable currentFilterParams={currentFilterParams} />
                 </div>
         </main>
     )
