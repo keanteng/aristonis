@@ -1,6 +1,6 @@
 import { tempProductDef } from "@/app/library/definitions/temp-products-def"
 import Image from "next/image";
-import { FormatCurrency } from "@/app/library/utils/format-currency";
+import { formatCurrency } from "@/app/library/utils/format-currency";
 import {
     ShoppingBagIcon,
     ShoppingCartIcon,
@@ -47,7 +47,7 @@ export default function ProductCard(product: tempProductDef) {
                 </div> 
             </div>
             <text className="text-xl font-semibold text-red-500 mt-2">
-                {FormatCurrency(product.price)}
+                {formatCurrency(product.price)}
             </text>
         </div>
     </div>

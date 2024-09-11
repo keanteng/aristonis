@@ -18,7 +18,7 @@ export default function Products({searchParams}: ProductsProps) {
     
     return (
         <main>
-            <div className="flex flex-row px-3 rounded-lg py-2 lg:mx-12 xl:mx-80 items-center">
+            <div className="flex flex-row px-3 rounded-lg py-5 lg:mx-12 xl:mx-80 items-center">
                 <div className="flex flex-row items-center gap-1">
                     <h1 className="text-3xl font-semibold">Products</h1>
                 </div>

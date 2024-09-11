@@ -8,7 +8,6 @@ import {
     Tabs
 } from '@radix-ui/themes'
 import { useRouter, useSearchParams, usePathname} from 'next/navigation';
-import path from 'path';
 import { useDebounceCallback } from 'usehooks-ts';
 
 interface ProductSearchProps {
@@ -83,7 +82,7 @@ export default function ProductSearch({ currentFilterParams }: ProductSearchProp
                 </Tabs.List>
             </Tabs.Root>
             {/* Add a simple search bar */}
-            <div className="relative mx-2 my-2">
+            <div className="relative mx-2">
                 <input
                     type="text"
                     placeholder="Search..."
