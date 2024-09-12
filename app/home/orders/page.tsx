@@ -7,7 +7,7 @@ interface OrdersProps {
 }
 
 export default function Orders({searchParams}: OrdersProps) {
-    let currentFilterParams = searchParams.filter ?? 'all';
+    const currentFilterParams = searchParams.filter ?? 'all';
     console.log(currentFilterParams);
     return (
         <main>

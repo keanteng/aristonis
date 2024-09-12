@@ -11,6 +11,8 @@ const ColorMode = () => {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
 
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+
     // darkMode state
     const [darkMode, setDarkMode] = useState(false);
 

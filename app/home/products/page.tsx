@@ -12,7 +12,7 @@ interface ProductsProps {
 }
 
 export default function Products({searchParams}: ProductsProps) {
-    let currentFilterParams = searchParams.filter ?? 'newest';
+    const currentFilterParams = searchParams.filter ?? 'newest';
     const products = tempProducts;
     console.log(currentFilterParams);
     

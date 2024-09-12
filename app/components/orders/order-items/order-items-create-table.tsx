@@ -1,6 +1,5 @@
 'use client';
 
-import { tempOrderItems } from "@/app/library/data/temp-order-items"
 import { useState } from "react";
 import OrderItemsDrawer from "./order-items-drawer";
 import { tempOrderItemsDef } from "@/app/library/definitions/temp-order-items-def";

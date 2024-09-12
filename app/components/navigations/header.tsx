@@ -6,11 +6,6 @@ import ColorMode from '../colorMode';
 import Link from 'next/link';
 import Sidebar from './side-nav';
 
-interface HeaderProps {
-  toggleSidebar: () => void;
-  isSidebarOpen: boolean;
-}
-
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

@@ -7,7 +7,7 @@ interface OrderItemsFormProps {
     orderItem: tempOrderItemsDef;
 }
 
-export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) {
+export function OrderItemsForm({ orderItem }: OrderItemsFormProps) {
     const [formData, setFormData] = useState<tempOrderItemsDef>({
         id: orderItem.id,
         name: orderItem.name,
