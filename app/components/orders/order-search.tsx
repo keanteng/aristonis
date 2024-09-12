@@ -1,6 +1,6 @@
 'use client';
 import { Tabs } from '@radix-ui/themes';
-import {MagnifyingGlassIcon} from '@heroicons/react/24/outline';
+import {MagnifyingGlassIcon, PlusCircleIcon} from '@heroicons/react/24/outline';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useDebounceCallback } from 'usehooks-ts';
 import Link from 'next/link';
@@ -44,37 +44,48 @@ export default function OrderSearch({currentFilterParams}: OrderSearchProps) {
 
     return (
         <div className="flex flex-col md:flex-row items-center justify-between text-base mb-2">
-            <Tabs.Root defaultValue='newest' className='px-2' asChild>
-                <Tabs.List className='flex'>
-                    <Tabs.Trigger value="all">
-                        <Link
-                            href={{
-                                query: { ...searchParamsObject, filter: 'all' }
-                            }}
-                        >
-                            All
-                        </Link>
-                    </Tabs.Trigger>
-                    <Tabs.Trigger value="today">
-                        <Link
-                            href={{
-                                query: { ...searchParamsObject, filter: 'today' }
-                            }}
-                        >
-                            Today
-                        </Link>
-                    </Tabs.Trigger>
-                    <Tabs.Trigger value="this-week">
-                        <Link
-                            href={{
-                                query: { ...searchParamsObject, filter: 'this-week' }
-                            }}
-                        >
-                            This Week
-                        </Link>
-                    </Tabs.Trigger>
-                </Tabs.List>
-            </Tabs.Root>
+            <div className='flex flex-col lg:flex-row gap-2 items-center'>
+                <Tabs.Root defaultValue='newest' className='px-2' asChild>
+                    <Tabs.List className='flex'>
+                        <Tabs.Trigger value="all">
+                            <Link
+                                href={{
+                                    query: { ...searchParamsObject, filter: 'all' }
+                                }}
+                            >
+                                All
+                            </Link>
+                        </Tabs.Trigger>
+                        <Tabs.Trigger value="today">
+                            <Link
+                                href={{
+                                    query: { ...searchParamsObject, filter: 'today' }
+                                }}
+                            >
+                                Today
+                            </Link>
+                        </Tabs.Trigger>
+                        <Tabs.Trigger value="this-week">
+                            <Link
+                                href={{
+                                    query: { ...searchParamsObject, filter: 'this-week' }
+                                }}
+                            >
+                                This Week
+                            </Link>
+                        </Tabs.Trigger>
+                    </Tabs.List>
+                </Tabs.Root>
+                <div>
+                    <Link href="/home/orders/create">
+                        <div className="flex items-center gap-1 bg-primary-500 px-2 py-1 rounded-lg text-sm text-gray-500">
+                            <span className='hidden lg:visible'>| &nbsp;</span>
+                            <PlusCircleIcon className="w-5 h-5" />
+                            New
+                        </div>
+                    </Link>
+                </div>
+            </div>
             {/* Add a simple search bar */}
             <div className="relative">
                 <input

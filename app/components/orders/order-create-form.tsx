@@ -1,28 +1,27 @@
-import { useState } from 'react';
-import { filterOrderById } from "@/app/library/utils/filter-order";
-import { tempOrdersDef } from "@/app/library/definitions/temp-orders-def";
-import { formatDate } from '@/app/library/utils/format-date';
+'use client';
 
-interface OrderEditFormProps {
-    currentOrderId: string;
-}
+import { useState, useEffect } from "react";
 
-export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
-    const order: tempOrdersDef = filterOrderById(currentOrderId)!;
+export default function OrderCreateForm() {
+    const [uuid, setUuid] = useState<string>('');
 
-    const [formData, setFormData] = useState<tempOrdersDef>({
-        id: order.id,
-        name: order.name,
-        date: new Date(order.date),
-        total: order.total,
-        status: order.status
+    useEffect(() => {
+        const generatedUuid = crypto.randomUUID().replace(/-/g, '').slice(0, 5);
+        setUuid(generatedUuid);
+    }, []);
+
+    const [formData, setFormData] = useState({
+        name: '',
+        date: '',
+        total: '',
+        status: 'pending'
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: name === 'date' ? new Date(value) : value // Convert date string to Date object
+            [name]: value
         }));
     };
 
@@ -30,21 +29,26 @@ export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
         e.preventDefault();
         // Handle form submission logic here
         console.log('Form submitted:', formData);
-        alert('Form submitted! Check the console for the form data.');
     };
 
     return (
         <form className="text-black" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2 lg:w-2/5 w-3/5">
+                <div className="flex flex-col gap-0.5 mb-3">
+                    <p className="text-sm text-neutral-500">
+                    Creating order with ID: {uuid}
+                    </p>
+                </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="name" className="text-xs px-1 text-neutral-500 font-medium">Customer</label>
                     <input 
                         type="text" 
                         id="name" 
                         name="name" 
-                        value={formData.name} 
                         className="border-2 py-1 px-2 rounded-lg bg-white"
+                        required
                         onChange={handleChange}
+                        value={formData.name}
                     />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -52,10 +56,11 @@ export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
                     <input 
                         type="date" 
                         id="date" 
-                        name="date" 
-                        value={formatDate(formData.date)} 
+                        name="date"  
                         className="border-2 py-1 px-2 rounded-lg bg-white"
+                        required
                         onChange={handleChange}
+                        value={formData.date}
                     />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -64,9 +69,10 @@ export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
                         type="number" 
                         id="total" 
                         name="total" 
-                        value={formData.total} 
                         className="border-2 py-1 px-2 rounded-lg bg-white"
+                        required
                         onChange={handleChange}
+                        value={formData.total}
                     />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -74,9 +80,10 @@ export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
                     <select 
                         id="status" 
                         name="status" 
-                        value={formData.status} 
                         className="border-2 py-1 px-2 rounded-lg bg-white"
+                        required
                         onChange={handleChange}
+                        value={formData.status}
                     >
                         <option value="pending">Pending</option>
                         <option value="fulfilled">Fulfilled</option>
@@ -88,10 +95,11 @@ export default function OrderEditForm({ currentOrderId }: OrderEditFormProps) {
                         type="submit" 
                         className=" mt-6 py-2 px-3 rounded-lg bg-neutral-300 hover:bg-neutral-200"
                     >
-                        Update Order
+                        Create Order
                     </button>
                 </div>
             </div>
+
         </form>
-    );
+    )
 }

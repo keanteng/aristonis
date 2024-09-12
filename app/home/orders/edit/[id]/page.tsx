@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import OrderEditForm from "@/app/components/orders/order-edit-form";
 import OrderItemsTable from "@/app/components/orders/order-items/order-items-table";
+import OrderItemsAnalysis from "@/app/components/orders/order-items/order-items-analysis";
 import { useState } from "react";
 
 export default function OrderEditPage() {
@@ -46,7 +47,7 @@ export default function OrderEditPage() {
                 <div>
                     {activeTab === 'edit' && <OrderEditForm currentOrderId={id.toString()} />}
                     {activeTab === 'items' && <OrderItemsTable />}
-                    {activeTab === 'analysis' && <p>Hi</p>}
+                    {activeTab === 'analysis' && <OrderItemsAnalysis />}
                 </div>
             </div>
             </div>

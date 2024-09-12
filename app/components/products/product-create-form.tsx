@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { tempProductDef } from "@/app/library/definitions/temp-products-def";
 
 export default function ProductCreateForm() {
     const [uuid, setUuid] = useState<string>('');
@@ -10,8 +11,37 @@ export default function ProductCreateForm() {
         setUuid(generatedUuid);
     }, []);
 
+    const [formData, setFormData] = useState<tempProductDef>({
+        id: '',
+        name: '',
+        brand: '',
+        category: '',
+        price: 0,
+        barcode: '',
+        weight: 0,
+        dimension: '',
+        rating: 0,
+        sku: '' // Add the 'sku' property
+    });
+
+    formData.id = uuid;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        console.log('Form submitted:', formData);
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-0.5">
                 <h1 className="text-lg font-medium">New</h1>
                 <p className="text-sm text-neutral-500">
@@ -28,6 +58,8 @@ export default function ProductCreateForm() {
                         name="name"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value= {formData.name}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -48,6 +80,8 @@ export default function ProductCreateForm() {
                         name="category"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.category}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -58,6 +92,8 @@ export default function ProductCreateForm() {
                         name="price"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.price}
+                        onChange={handleChange}
                     />
                 </div>
                 <hr className="border-t border-neutral-300 my-4" />
@@ -69,16 +105,20 @@ export default function ProductCreateForm() {
                         name="weight"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.weight}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
-                    <label htmlFor="dimensions" className="text-xs px-1 text-neutral-500 font-medium">Dimensions</label>
+                    <label htmlFor="dimensions" className="text-xs px-1 text-neutral-500 font-medium">Dimension</label>
                     <input
                         type="text"
-                        id="dimensions"
-                        name="dimensions"
+                        id="dimension"
+                        name="dimension"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.dimension}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -89,6 +129,8 @@ export default function ProductCreateForm() {
                         name="barcode"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.barcode}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -99,6 +141,8 @@ export default function ProductCreateForm() {
                         name="rating"
                         className="border-2 py-1 px-2 rounded-lg bg-white w-3/5 lg:w-2/5"
                         required
+                        value={formData.rating}
+                        onChange={handleChange}
                     />
                 </div>
             </div>

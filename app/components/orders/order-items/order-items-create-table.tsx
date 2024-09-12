@@ -7,8 +7,8 @@ import { tempOrderItemsDef } from "@/app/library/definitions/temp-order-items-de
 import { PlusCircleIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import OrderItemsCreateDrawer from "./order-items-create-drawer";
 
-export default function OrderItemsTable() {
-    const orderItems = tempOrderItems;
+export default function OrderItemsCreateTable() {
+    const orderItems: tempOrderItemsDef[] = [];
     const [selectedOrderItem, setSelectedOrderItem] = useState<tempOrderItemsDef | null>(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isAddItemOpen, setIsAddItemOpen] = useState(false);

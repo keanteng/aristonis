@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { tempOrderItemsDef } from "@/app/library/definitions/temp-order-items-def";
 
 
 export function OrderItemsCreateForm() {
@@ -11,8 +12,32 @@ export function OrderItemsCreateForm() {
         setUuid(generatedUuid);
     }, []);
 
+    const [formData, setFormData] = useState<tempOrderItemsDef>({
+        id: '',
+        name: '',
+        quantity: 0,
+        price: 0,
+        packagingType: 'carton'
+    });
+
+    formData.id = uuid;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        console.log('Form submitted:', formData);
+    };
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2 mb-6">
                 <div className="flex flex-col gap-0.5">
                     <h1 className="text-lg font-medium">Order Item</h1>
@@ -29,6 +54,8 @@ export function OrderItemsCreateForm() {
                         name="name" 
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
                         required
+                        onChange={handleChange}
+                        value={formData.name}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -39,6 +66,8 @@ export function OrderItemsCreateForm() {
                         name="quantity" 
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
                         required
+                        onChange={handleChange}
+                        value={formData.quantity}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -49,6 +78,8 @@ export function OrderItemsCreateForm() {
                         name="price" 
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
                         required
+                        onChange={handleChange}
+                        value={formData.price}
                     />
                 </div>
                 {/*Select between carton, packet, outer */}
@@ -57,7 +88,11 @@ export function OrderItemsCreateForm() {
                     <select 
                         id="packagingType" 
                         name="packagingType" 
-                        className="border-2 py-1 px-2 rounded-lg bg-white w-full">
+                        className="border-2 py-1 px-2 rounded-lg bg-white w-full"
+                        required
+                        onChange={handleChange}
+                        value={formData.packagingType}
+                    >
                         <option value="carton">Carton</option>
                         <option value="packet">Packet</option>
                         <option value="outer">Outer</option>

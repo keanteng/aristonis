@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import { tempOrderItemsDef } from "@/app/library/definitions/temp-order-items-def";
 
 interface OrderItemsFormProps {
@@ -5,8 +8,30 @@ interface OrderItemsFormProps {
 }
 
 export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) {
+    const [formData, setFormData] = useState<tempOrderItemsDef>({
+        id: orderItem.id,
+        name: orderItem.name,
+        quantity: orderItem.quantity,
+        price: orderItem.price,
+        packagingType: orderItem.packagingType
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        console.log('Form submitted:', formData);
+    };
+
     return (
-        <form className="text-black">
+        <form className="text-black" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2 mb-6">
                 <div className="flex flex-col gap-0.5">
                     <h1 className="text-lg font-medium">Order Item</h1>
@@ -21,8 +46,10 @@ export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) 
                         type="text" 
                         id="name" 
                         name="name" 
-                        value={orderItem.name || ''} 
+                        value={formData.name} 
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
+                        required
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -31,8 +58,10 @@ export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) 
                         type="number"
                         id="quantity" 
                         name="quantity" 
-                        value={orderItem.quantity || ''}  
+                        value={formData.quantity}  
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
+                        required
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
@@ -41,8 +70,10 @@ export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) 
                         type="number" 
                         id="price" 
                         name="price" 
-                        value={orderItem.price || ''} 
+                        value={formData.price} 
                         className="border-2 py-1 px-2 rounded-lg bg-white w-full"
+                        required
+                        onChange={handleChange}
                     />
                 </div>
                 {/*Select between carton, packet, outer */}
@@ -51,8 +82,11 @@ export function OrderItemsForm({ orderItem }: { orderItem: tempOrderItemsDef }) 
                     <select 
                         id="packagingType" 
                         name="packagingType" 
-                        value={orderItem.packagingType || ''} 
-                        className="border-2 py-1 px-2 rounded-lg bg-white w-full">
+                        value={formData.packagingType} 
+                        className="border-2 py-1 px-2 rounded-lg bg-white w-full"
+                        required
+                        onChange={handleChange}
+                    >
                         <option value="carton">Carton</option>
                         <option value="packet">Packet</option>
                         <option value="outer">Outer</option>
