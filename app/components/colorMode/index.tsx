@@ -9,9 +9,7 @@ import {
 
 const ColorMode = () => {
     const [mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
-
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    const { setTheme } = useTheme();
 
     // darkMode state
     const [darkMode, setDarkMode] = useState(false);
