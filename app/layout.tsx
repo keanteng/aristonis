@@ -8,6 +8,9 @@ import { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: "Aristonis",
   description: "Simplify Your Sales Process",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 interface RootLayoutProps {
