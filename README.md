@@ -9,6 +9,7 @@ Aristonis is a **UI prototype** for a smarter sales management. Its objective is
 The project is build using [Next.JS](https://nextjs.org/docs), and the UI is powered mainly by [Tailwind CSS](https://tailwindcss.com/) and some [Radix UI](https://www.radix-ui.com/). 
 
 ## Live Demo
+https://aristonis.vercel.app/
 
 ## Preview
 ![alt text](images/image.png)
