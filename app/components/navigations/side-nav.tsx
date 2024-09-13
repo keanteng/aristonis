@@ -33,11 +33,6 @@ const menuItems = [
     label: 'Tasks',
     href: '/home/tasks'
   },
-  {
-    icons: <UsersIcon className='h-5 w-5' />,
-    label: 'Employees',
-    href: '/home/employees'
-  },
 ];
 
 interface SidebarProps {
