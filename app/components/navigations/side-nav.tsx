@@ -2,6 +2,8 @@ import {
   HomeIcon,
   ShoppingBagIcon,
   ArchiveBoxIcon,
+  ClipboardDocumentListIcon,
+  UsersIcon,
 } from '@heroicons/react/24/outline';
 import {
   GitHubLogoIcon,
@@ -25,6 +27,16 @@ const menuItems = [
     icons: <ArchiveBoxIcon className='h-5 w-5' />,
     label: 'Orders',
     href: '/home/orders'
+  },
+  {
+    icons: <ClipboardDocumentListIcon className='h-5 w-5' />,
+    label: 'Tasks',
+    href: '/home/tasks'
+  },
+  {
+    icons: <UsersIcon className='h-5 w-5' />,
+    label: 'Employees',
+    href: '/home/employees'
   },
 ];
 

@@ -39,7 +39,7 @@ export default function HomeAnalysis() {
                             34 Minutes
                         </p>
                         <p className="text-sm text-center">
-                            Time Between Purchase
+                            Average Order Completion Time
                         </p>
                     </div>
                 </div>
