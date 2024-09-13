@@ -17,7 +17,7 @@ export default function HomeAnalysis() {
                             23,456
                         </p>
                         <p className="text-sm">
-                            Today's Sales (RM)
+                            Today&apos;s Sales (RM)
                         </p>
                     </div>
                 </div>
